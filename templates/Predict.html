@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#header {
+    background-color:gray;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:600px;
+    width:100px;
+    float:left;
+    padding:5px;
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px;
+}
+#footer {
+    background-color:gray;
+    color:rgb(255, 255, 255);
+    clear:both;
+    text-align:center;
+    padding:5px;
+}
+</style>
+</head>
+<body>
+
+<div id="header">
+<h1>Cow Feet Health Detection</h1>
+</div>
+
+<div id="nav">
+</div>
+
+<div id="section">
+<h2></h2>
+  <form action="http://127.0.0.1:5000/uploader" method = "POST" enctype = "multipart/form-data" id="numform">
+    <input type="file" name="pic[]" accept="image/*" multiple="multiple"> <br> <br>
+    <button type="submit" value="Submit">Predict</button>
+  </form> <br> 
+  <!--<output form="numform" name="result">Result:</output>>-->
+</div>
+
+<div id="footer">
+</div>
+
+</body>
+</html>
