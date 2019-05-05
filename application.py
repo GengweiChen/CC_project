@@ -43,7 +43,7 @@ def upload_file():
                 print(r.text)
                 list[file.filename] = r.json()
             else:
-                return 'file not supported'
+                list[file.filename] = 'file not supported'
         print(list)
         return str(list)
 
