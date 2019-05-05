@@ -35,11 +35,11 @@ def upload_file():
                         i += 1
             else:
                 fname = tmp
-            fname.lower()
+            fname1 = fname.lower()
             print(fname)
-            if file and allowed_file(fname):
-                file.save(secure_filename(fname))
-                f = {'file': open(fname,'rb')}
+            if file and allowed_file(fname1):
+                file.save(secure_filename(fname1))
+                f = {'file': open(fname1,'rb')}
                 r = requests.post("https://predictapp.azurewebsites.net/predict", files=f)
                 print(r.text)
                 list[file.filename] = r.json()
