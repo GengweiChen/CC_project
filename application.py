@@ -23,6 +23,9 @@ def upload_file():
         print(files)
         list = []
         for file in files:
+            tmp = file.filename
+            if tmp.find(' ') != -1:
+                return 'filename contains space, please rename the filename'
             if file and allowed_file(file.filename):
                 print(file)
                 file.save(secure_filename(file.filename))
