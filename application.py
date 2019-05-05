@@ -35,6 +35,7 @@ def upload_file():
                         i += 1
             else:
                 fname = tmp
+            fname.lower()
             print(fname)
             if file and allowed_file(fname):
                 file.save(secure_filename(fname))
