@@ -21,7 +21,7 @@ def upload_file():
     if request.method == 'POST':
         files = request.files.getlist("pic[]")
         print(files)
-        list = []
+        list = {}
         for file in files:
             tmp = file.filename
             fname = ""
@@ -33,13 +33,15 @@ def upload_file():
                     else:
                         fname += tmp[i]
                         i += 1
+            else:
+                fname = tmp
             print(fname)
             if file and allowed_file(fname):
                 file.save(secure_filename(fname))
                 f = {'file': open(fname,'rb')}
                 r = requests.post("https://predictapp.azurewebsites.net/predict", files=f)
                 print(r.text)
-                list.append(r.json())
+                list[file.filename] = r.json()
             else:
                 return 'file not supported'
         print(list)
