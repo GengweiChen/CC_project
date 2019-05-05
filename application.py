@@ -6,6 +6,12 @@ import requests
 
 app = Flask(__name__)
 
+app.config['ALLOWED_EXTENSIONS'] = set(['pdf', 'png', 'jpg', 'jpeg'])
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
+
 @app.route('/')
 def upload():
     return render_template('Predict.html')
@@ -17,11 +23,15 @@ def upload_file():
         print(files)
         list = []
         for file in files:
-            file.save(secure_filename(file.filename))
-            f = {'file': open(file.filename,'rb')}
-            r = requests.post("https://predictapp.azurewebsites.net/predict", files=f)
-            print(r.text)
-            list.append(r.json())
+            if file and allowed_file(file.filename):
+                print(file)
+                file.save(secure_filename(file.filename))
+                f = {'file': open(file.filename,'rb')}
+                r = requests.post("https://predictapp.azurewebsites.net/predict", files=f)
+                print(r.text)
+                list.append(r.json())
+            else:
+                return 'file not supported'
         print(list)
         return str(list)
 
