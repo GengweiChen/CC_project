@@ -24,12 +24,19 @@ def upload_file():
         list = []
         for file in files:
             tmp = file.filename
+            fname = ""
             if tmp.find(' ') != -1:
-                return 'filename contains space, please rename the filename'
-            if file and allowed_file(file.filename):
-                print(file)
-                file.save(secure_filename(file.filename))
-                f = {'file': open(file.filename,'rb')}
+                i = 0
+                while i < len(tmp):
+                    if tmp[i] == ' ':
+                        i += 1
+                    else:
+                        fname += tmp[i]
+                        i += 1
+            print(fname)
+            if file and allowed_file(fname):
+                file.save(secure_filename(fname))
+                f = {'file': open(fname,'rb')}
                 r = requests.post("https://predictapp.azurewebsites.net/predict", files=f)
                 print(r.text)
                 list.append(r.json())
