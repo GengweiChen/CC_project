@@ -45,9 +45,9 @@ def upload_file():
                 ##list[file.filename] = r.json()
                 dic_tmp = r.json()
                 if dic_tmp.get('predictionHealthy') > 0.1:
-                    list[file.filename] = str(dic_tmp) + ' Healthy'
+                    list[file.filename] = str(dic_tmp) + ' The Cow is Healthy'
                 else:
-                    list[file.filename] = str(dic_tmp) + ' Unhealthy'
+                    list[file.filename] = str(dic_tmp) + ' The Cow is Unhealthy'
             else:
                 list[file.filename] = 'file not supported'
         print(list)
