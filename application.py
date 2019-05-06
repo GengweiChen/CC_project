@@ -42,7 +42,12 @@ def upload_file():
                 f = {'file': open(fname1,'rb')}
                 r = requests.post("https://predictapp.azurewebsites.net/predict", files=f)
                 print(r.text)
-                list[file.filename] = r.json()
+                ##list[file.filename] = r.json()
+                dic_tmp = r.json()
+                if dic_tmp.get('predictionHealthy') > 0.001:
+                    list[file.filename] = 'Healthy'
+                else:
+                    list[file.filename] = 'Unhealthy'
             else:
                 list[file.filename] = 'file not supported'
         print(list)
