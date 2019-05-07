@@ -21,7 +21,7 @@ def upload_file():
     if request.method == 'POST':
         files = request.files.getlist("pic[]")
         print(files)
-        list = {}
+        str1 = ' '
         for file in files:
             tmp = file.filename
             fname = ""
@@ -45,11 +45,11 @@ def upload_file():
                 ##list[file.filename] = r.json()
                 dic_tmp = r.json()
                 if dic_tmp.get('predictionHealthy') > 0.1:
-                    list[file.filename] = str(dic_tmp) + ' The Cow is Healthy'
+                    str1 += (str(file.filename) + ': Predict Value: ' + str(dic_tmp) + '<br/>' + 'The Cow is Healthy<br/>')
                 else:
-                    list[file.filename] = str(dic_tmp) + ' The Cow is Unhealthy'
+                    str1 += (str(file.filename) + ': Predict Value: ' + str(dic_tmp) + '<br/>' + 'The Cow is Unhealthy<br/>')
             else:
-                list[file.filename] = 'file not supported'
+                list[file.filename] = 'file not supported<br>'
         print(list)
         return str(list)
 
