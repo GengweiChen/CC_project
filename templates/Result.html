@@ -11,7 +11,7 @@
 #nav {
     line-height:30px;
     background-color:#eeeeee;
-    height:600px;
+    height:1700px;
     width:100px;
     float:left;
     padding:5px;
@@ -23,7 +23,7 @@
 }
 #footer {
     background-color:gray;
-    color:rgb(255, 255, 255);
+    color:white;
     clear:both;
     text-align:center;
     padding:5px;
@@ -37,15 +37,21 @@
 </div>
 
 <div id="nav">
+</form>
 </div>
 
 <div id="section">
-<h2></h2>
-  <form action="http://127.0.0.1:5000/uploader" method = "POST" enctype = "multipart/form-data" id="numform">
-    <input type="file" name="pic[]" accept="image/*" multiple="multiple"> <br> <br>
-    <button type="submit" value="Submit">Predict</button>
-  </form> <br> 
-  <!--<output form="numform" name="result">Result:</output>>-->
+<h2>Result:</h2>
+<body>
+    <table border = 1>
+        {% for key, value in result.items() %}
+        <tr>
+            <th> {{ key }} </th>
+            <td> {{ value }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
 </div>
 
 <div id="footer">
@@ -53,3 +59,4 @@
 
 </body>
 </html>
+
