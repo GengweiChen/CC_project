@@ -49,9 +49,9 @@ def upload_file():
                 else:
                     str1 += (str(file.filename) + ': Predict Value: ' + str(dic_tmp) + '<br/>' + 'The Cow is Unhealthy<br/>')
             else:
-                list[file.filename] = 'file not supported<br>'
-        print(list)
-        return str(list)
+                str1 += (str(file.filename) + ': file not supported')
+        print(str1)
+        return str1
 
 
 if __name__ == '__main__':
